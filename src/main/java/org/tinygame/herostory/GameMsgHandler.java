@@ -13,22 +13,38 @@ import org.tinygame.herostory.msg.GameMsgProtocol;
 /**
  * 自定义消息处理器
  */
-public class GameMsgHandler extends SimpleChannelInboundHandler {
+public class GameMsgHandler extends SimpleChannelInboundHandler<Object> {
     /**
      * 日志对象
      */
     static private final Logger LOGGER = LoggerFactory.getLogger(GameMsgHandler.class);
 
+    /**
+     * 异同点
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        Broadaster.addChannel(ctx.channel());
+        if (null == ctx) {
+            return;
+        }
+
+        try {
+            super.channelActive(ctx);
+            Broadaster.addChannel(ctx.channel());
+        } catch (Exception ex) {
+            LOGGER.error(ex.getMessage(), ex);
+        }
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        super.handlerRemoved(ctx);
+        if (null == ctx) {
+            return;
+        }
 
-        Broadaster.removeChannel(ctx.channel());
+        super.handlerRemoved(ctx);
 
         //先拿到用户id
         Integer userId = (Integer) ctx.channel().attr(AttributeKey.valueOf("userId")).get();
@@ -38,6 +54,7 @@ public class GameMsgHandler extends SimpleChannelInboundHandler {
         }
 
         UserManger.removeUser(userId);
+        Broadaster.removeChannel(ctx.channel());
 
         GameMsgProtocol.UserQuitResult.Builder resultBuider = GameMsgProtocol.UserQuitResult.newBuilder();
         resultBuider.setQuitUserId(userId);

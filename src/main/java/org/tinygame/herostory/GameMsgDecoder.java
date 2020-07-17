@@ -23,8 +23,7 @@ public class GameMsgDecoder extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if (null == ctx ||
-                null == msg) {
+        if (null == ctx || null == msg) {
             return;
         }
 
@@ -34,12 +33,12 @@ public class GameMsgDecoder extends ChannelInboundHandlerAdapter {
 
         // websocket 二进制消息会通过 HttpServerCodec 解码成 BinaryWebSocketFrame 类对象
         BinaryWebSocketFrame frame = (BinaryWebSocketFrame) msg;
-        ByteBuf byteBuffer = frame.content();
+        ByteBuf byteBuf = frame.content();
 
-        byteBuffer.readShort(); // 读取消息的长度
-        int msgCode = byteBuffer.readShort(); // 读取消息编号
+        byteBuf.readShort(); // 读取消息的长度
+        int msgCode = byteBuf.readShort(); // 读取消息编号
 
-        //获取消息构建者
+        // 获取消息构建者
         // 不要写在拿到消息体步骤下面，写在底下会多执行一步的读字节操作，写在上面可以节省资源
         Message.Builder msgBuilder = GameMsgRecognizer.getBuilderByMsgCode(msgCode);
         if (null == msgBuilder) {
@@ -48,10 +47,8 @@ public class GameMsgDecoder extends ChannelInboundHandlerAdapter {
         }
 
         // 拿到消息体
-        byte[] msgBody = new byte[byteBuffer.readableBytes()];
-        byteBuffer.readBytes(msgBody);
-
-
+        byte[] msgBody = new byte[byteBuf.readableBytes()];
+        byteBuf.readBytes(msgBody);
 
         msgBuilder.clear();
         msgBuilder.mergeFrom(msgBody);

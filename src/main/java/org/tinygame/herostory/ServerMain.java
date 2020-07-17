@@ -18,7 +18,7 @@ import org.tinygame.herostory.cmdHandle.CmdHandlerFactory;
 
 /**
  *
- * @test http://cdn0001.afrxvk.cn/hero_story/demo/step010/index.html?serverAddr=192.168.0.137:12345&userId=1
+ * @test
  */
 public class ServerMain {
     /**
@@ -26,11 +26,18 @@ public class ServerMain {
      */
     static private final Logger LOGGER = LoggerFactory.getLogger(ServerMain.class);
 
+    /**
+     * 服务器端口号
+     */
+    static private final int SERVER_PORT = 12345;
+
     static public void main(String[] args){
         // 设置 log4j 属性文件
         PropertyConfigurator.configure(ServerMain.class.getClassLoader().getResourceAsStream("log4j.properties"));
 
+        //初始化命令处理器工厂
         CmdHandlerFactory.init();
+        //初始化消息识别器
         GameMsgRecognizer.init();
 
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -50,30 +57,44 @@ public class ServerMain {
                 protected void initChannel(SocketChannel sc) throws Exception {
                     //编码解码之后走到自己的 GameMsgHandler方法里
                     sc.pipeline().addLast(
+                            //HTTP服务器编解码器
                             new HttpServerCodec(),
+                            //内容长度限制
                             new HttpObjectAggregator(65535),
+                            //websocket协议处理器，在这里处理握手、ping、pong等消息
                             new WebSocketServerProtocolHandler("/websocket"),
                             new GameMsgDecoder(), // 自定义消息解码器
                             new GameMsgEncoder(), // 自定义消息编码器
-                            new GameMsgHandler()
+                            new GameMsgHandler()  //自定义的消息处理器
                     );
                 }
             });
 
+            /**
+             *
+             * 异同点
+             * b.option(ChannelOption.SO_BACKLOG,128);
+             * b.childOption(ChannelOption.SO_KEEPALIVE,true);
+             *
+             */
             b.option(ChannelOption.SO_BACKLOG,128);
             b.childOption(ChannelOption.SO_KEEPALIVE,true);
 
-            ChannelFuture f = b.bind(12345).sync();
+            ChannelFuture f = b.bind(SERVER_PORT).sync();
 
             if (f.isSuccess()){
                 LOGGER.info("游戏服务器启动成功！");
             }
 
+            // 等待服务器信道关闭,
+            // 也就是不要立即退出应用程序, 让应用程序可以一直提供服务
             f.channel().closeFuture().sync();
         } catch (Exception e) {
+            // 异常处理
             LOGGER.error(e.getMessage(),e);
             e.printStackTrace();
         } finally {
+            // 关闭服务器
             workGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }

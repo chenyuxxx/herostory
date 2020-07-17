@@ -1,0 +1,21 @@
+[20:39:35,154] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[20:40:17,756] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:40:17,757] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:40:18,295] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:40:18,296] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:40:18,310] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
+[20:40:19,357] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
+[20:40:37,398] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[20:40:43,881] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:40:43,883] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:40:45,710] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:40:45,711] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:40:46,579] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
+[20:40:47,450] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
+[20:58:59,885] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[20:59:05,453] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:59:05,453] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:59:07,101] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 0
+[20:59:07,102] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 2
+[20:59:07,582] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
+[20:59:08,466] [ERROR] GameMsgDecoder.channelRead --> 无法识别的消息， msgCode = 4
