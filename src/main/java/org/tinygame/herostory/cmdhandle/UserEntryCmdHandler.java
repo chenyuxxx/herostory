@@ -1,4 +1,4 @@
-package org.tinygame.herostory.cmdHandle;
+package org.tinygame.herostory.cmdhandle;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.AttributeKey;

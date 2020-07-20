@@ -14,6 +14,11 @@ import java.util.Map;
  */
 public class GameMsgRecognizer {
     /**
+     * 日志对象
+     */
+    static private final Logger LOGGER = LoggerFactory.getLogger(GameMsgRecognizer.class);
+
+    /**
      * 消息编号 -> 消息对象字典
      */
     static private final Map<Integer, GeneratedMessageV3> _msgCodeAndMsgObjMap = new HashMap<>();
@@ -33,14 +38,61 @@ public class GameMsgRecognizer {
      * 初始化
      */
     static public void init() {
-        _msgCodeAndMsgObjMap.put(GameMsgProtocol.MsgCode.USER_ENTRY_CMD_VALUE, GameMsgProtocol.UserEntryCmd.getDefaultInstance());
-        _msgCodeAndMsgObjMap.put(GameMsgProtocol.MsgCode.WHO_ELSE_IS_HERE_CMD_VALUE, GameMsgProtocol.WhoElseIsHereCmd.getDefaultInstance());
-        _msgCodeAndMsgObjMap.put(GameMsgProtocol.MsgCode.USER_MOVE_TO_CMD_VALUE, GameMsgProtocol.UserMoveToCmd.getDefaultInstance());
+        LOGGER.info("==== 完成消息类与消息编号的映射 ====");
 
-        _clazzAndMsgCodeMap.put(GameMsgProtocol.UserEntryResult.class, GameMsgProtocol.MsgCode.USER_ENTRY_RESULT_VALUE);
-        _clazzAndMsgCodeMap.put(GameMsgProtocol.WhoElseIsHereResult.class, GameMsgProtocol.MsgCode.WHO_ELSE_IS_HERE_RESULT_VALUE);
-        _clazzAndMsgCodeMap.put(GameMsgProtocol.UserMoveToResult.class, GameMsgProtocol.MsgCode.USER_MOVE_TO_RESULT_VALUE);
-        _clazzAndMsgCodeMap.put(GameMsgProtocol.UserQuitResult.class, GameMsgProtocol.MsgCode.USER_QUIT_RESULT_VALUE);
+        // 获取内部类
+        Class<?>[] innerClazzArray = GameMsgProtocol.class.getDeclaredClasses();
+
+        for (Class<?> innerClazz : innerClazzArray) {
+            if (null == innerClazz ||
+                    !GeneratedMessageV3.class.isAssignableFrom(innerClazz)) {
+                // 如果不是消息类,
+                continue;
+            }
+
+            // 获取类名称并小写
+            String clazzName = innerClazz.getSimpleName();
+            clazzName = clazzName.toLowerCase();
+
+            for (GameMsgProtocol.MsgCode msgCode : GameMsgProtocol.MsgCode.values()) {
+                if (null == msgCode) {
+                    continue;
+                }
+
+                // 获取消息编码
+                String strMsgCode = msgCode.name();
+                strMsgCode = strMsgCode.replaceAll("_", "");
+                strMsgCode = strMsgCode.toLowerCase();
+
+                if (!strMsgCode.startsWith(clazzName)) {
+                    continue;
+                }
+
+                try {
+                    // 相当于调用 UserEntryCmd.getDefaultInstance();
+                    Object returnObj = innerClazz.getDeclaredMethod("getDefaultInstance").invoke(innerClazz);
+
+                    LOGGER.info(
+                            "{} <==> {}",
+                            innerClazz.getName(),
+                            msgCode.getNumber()
+                    );
+
+                    _msgCodeAndMsgObjMap.put(
+                            msgCode.getNumber(),
+                            (GeneratedMessageV3) returnObj
+                    );
+
+                    _clazzAndMsgCodeMap.put(
+                            innerClazz,
+                            msgCode.getNumber()
+                    );
+                } catch (Exception ex) {
+                    // 记录错误日志
+                    LOGGER.error(ex.getMessage(), ex);
+                }
+            }
+        }
     }
 
     /**

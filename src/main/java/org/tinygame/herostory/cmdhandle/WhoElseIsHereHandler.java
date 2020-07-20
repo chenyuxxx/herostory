@@ -1,4 +1,4 @@
-package org.tinygame.herostory.cmdHandle;
+package org.tinygame.herostory.cmdhandle;
 
 import io.netty.channel.ChannelHandlerContext;
 import org.tinygame.herostory.model.User;

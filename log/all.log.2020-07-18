@@ -1,0 +1,31 @@
+[18:00:59,935] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[18:03:16,693] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[18:05:17,964] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:35:25,200] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:35:51,938] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[19:35:51,951] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[19:35:53,142] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[19:35:53,143] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[19:35:54,484] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserMoveToCmd, msgBody = moveToPosX: 129.77588
+moveToPosY: -31.077908
+
+[19:35:55,466] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserMoveToCmd, msgBody = moveToPosX: -155.73106
+moveToPosY: -125.33618
+
+[19:35:56,930] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserMoveToCmd, msgBody = moveToPosX: -89.47706
+moveToPosY: -20.832443
+
+[19:49:07,761] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[19:51:40,802] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[19:51:41,742] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:51:53,948] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[19:52:01,511] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:54:40,026] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[19:54:40,948] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:55:15,580] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[19:55:16,513] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[19:57:34,626] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====

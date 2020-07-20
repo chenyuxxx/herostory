@@ -1,0 +1,15 @@
+[09:45:51,021] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[09:46:02,783] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[09:46:02,826] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[09:46:03,705] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[09:46:03,708] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[09:46:04,550] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserMoveToCmd, msgBody = moveToPosX: 87.427956
+moveToPosY: -1.0245464
+
+[09:46:05,847] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserMoveToCmd, msgBody = moveToPosX: 168.0256
+moveToPosY: -129.43437
+
