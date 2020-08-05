@@ -13,4 +13,14 @@ public class User {
      * 英雄形象
      */
     public String heroAvatar;
+
+    /**
+     * 当前血量
+     */
+    public int currHP;
+
+    /**
+     * 移动状态
+     */
+    public final MoveState moveState = new MoveState();
 }

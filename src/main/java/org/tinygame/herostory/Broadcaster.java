@@ -9,18 +9,15 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  * 广播管理器
  *
  */
-public final class Broadaster {
+public final class Broadcaster {
     /**
      * 私有化类为默认构造器
-     *
      */
-    private Broadaster() {
+    private Broadcaster() {
     }
-
 
     /**
      * 客户端通信数组，一定要使用 static ，否则无法实现群发功能
-     *
      */
     static private final ChannelGroup _channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 

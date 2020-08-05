@@ -2,7 +2,7 @@ package org.tinygame.herostory.cmdhandle;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.AttributeKey;
-import org.tinygame.herostory.Broadaster;
+import org.tinygame.herostory.Broadcaster;
 import org.tinygame.herostory.model.User;
 import org.tinygame.herostory.model.UserManger;
 import org.tinygame.herostory.msg.GameMsgProtocol;
@@ -23,12 +23,13 @@ public class UserEntryCmdHandler implements ICmdHandler<GameMsgProtocol.UserEntr
         User newUser = new User();
         newUser.userId = userId;
         newUser.heroAvatar = heroAvatar;
+        newUser.currHP = 100;
         UserManger.addUser(newUser);
 
         //将用户 id 附着到channnel
         ctx.channel().attr(AttributeKey.valueOf("userId")).set(userId);
         //构建结果并发送
         GameMsgProtocol.UserEntryResult newResult = resultBuider.build();
-        Broadaster.broadcast(newResult);
+        Broadcaster.broadcast(newResult);
     }
 }

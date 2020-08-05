@@ -32,7 +32,7 @@ public class GameMsgHandler extends SimpleChannelInboundHandler<Object> {
 
         try {
             super.channelActive(ctx);
-            Broadaster.addChannel(ctx.channel());
+            Broadcaster.addChannel(ctx.channel());
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
@@ -54,47 +54,19 @@ public class GameMsgHandler extends SimpleChannelInboundHandler<Object> {
         }
 
         UserManger.removeUser(userId);
-        Broadaster.removeChannel(ctx.channel());
+        Broadcaster.removeChannel(ctx.channel());
 
         GameMsgProtocol.UserQuitResult.Builder resultBuider = GameMsgProtocol.UserQuitResult.newBuilder();
         resultBuider.setQuitUserId(userId);
 
         GameMsgProtocol.UserQuitResult newResult = resultBuider.build();
-        Broadaster.broadcast(newResult);
+        Broadcaster.broadcast(newResult);
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if (null == ctx ||
-                null == msg) {
-            return;
-        }
-
-        LOGGER.info(
-                "收到客户!!!!端消息, msgClazz = {}, msgBody = {}",
-                msg.getClass().getSimpleName(),
-                msg
-        );
-
-        ICmdHandler<? extends GeneratedMessageV3> cmdHandler = CmdHandlerFactory.create(msg.getClass());
-
-        if (null != cmdHandler) {
-            cmdHandler.handle(ctx, cast(msg));
-        }
-    }
-
-    /**
-     * 转型为命令对象
-     *
-     * @param msg
-     * @param <TCmd>
-     * @return
-     */
-    static private <TCmd extends GeneratedMessageV3> TCmd cast(Object msg) {
-        if (null == msg) {
-            return null;
-        } else {
-            return (TCmd) msg;
+        if (msg instanceof GeneratedMessageV3) {
+            MainThreadProcessor.getInstance().process(ctx, (GeneratedMessageV3) msg);
         }
     }
 

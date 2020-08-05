@@ -1,0 +1,113 @@
+[10:24:53,921] [INFO] CmdHandlerFactory.init --> ==== 完成命令与处理器的关联 ====
+[10:24:54,067] [INFO] CmdHandlerFactory.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserAttkCmd <===> org.tinygame.herostory.cmdhandle.UserAttkCmdHandler
+[10:24:54,068] [INFO] CmdHandlerFactory.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserEntryCmd <===> org.tinygame.herostory.cmdhandle.UserEntryCmdHandler
+[10:24:54,070] [INFO] CmdHandlerFactory.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserMoveToCmd <===> org.tinygame.herostory.cmdhandle.UserMoveToCmdHandler
+[10:24:54,071] [INFO] CmdHandlerFactory.init --> org.tinygame.herostory.msg.GameMsgProtocol$WhoElseIsHereCmd <===> org.tinygame.herostory.cmdhandle.WhoElseIsHereHandler
+[10:24:54,101] [INFO] GameMsgRecognizer.init --> ==== 完成消息类与消息编号的映射 ====
+[10:24:54,214] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserDieResult <==> 12
+[10:24:54,215] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserSubtractHpResult <==> 11
+[10:24:54,217] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserAttkResult <==> 10
+[10:24:54,218] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserAttkCmd <==> 9
+[10:24:54,221] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserStopResult <==> 8
+[10:24:54,224] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserStopCmd <==> 7
+[10:24:54,226] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserQuitResult <==> 6
+[10:24:54,228] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserMoveToResult <==> 5
+[10:24:54,252] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserMoveToCmd <==> 4
+[10:24:54,262] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$WhoElseIsHereResult <==> 3
+[10:24:54,264] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$WhoElseIsHereCmd <==> 2
+[10:24:54,267] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserEntryResult <==> 1
+[10:24:54,269] [INFO] GameMsgRecognizer.init --> org.tinygame.herostory.msg.GameMsgProtocol$UserEntryCmd <==> 0
+[10:24:55,315] [INFO] ServerMain.main --> 游戏服务器启动成功！
+[10:25:08,624] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[10:25:08,633] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[10:25:19,200] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[10:25:19,201] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[10:25:20,471] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserEntryCmd, msgBody = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[10:25:20,474] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = WhoElseIsHereCmd, msgBody = 
+[10:25:20,985] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:20,985] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:21,691] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:21,693] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:21,850] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:21,851] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:21,997] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:21,998] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,149] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,150] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,298] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,298] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,474] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,475] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,601] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,601] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,749] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,750] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:22,922] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:22,922] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:23,077] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:23,077] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:23,243] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:23,244] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:23,413] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:23,413] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:23,594] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:23,594] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:24,191] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:24,192] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:24,442] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:24,443] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:24,631] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:24,632] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:24,799] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:24,800] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:24,944] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:24,944] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,109] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,109] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,293] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,294] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,441] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,442] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,597] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,597] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,765] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,766] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:25,933] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:25,934] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:26,093] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:26,093] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
+[10:25:26,274] [INFO] GameMsgHandler.channelRead0 --> 收到客户!!!!端消息, msgClazz = UserAttkCmd, msgBody = targetUserId: 1
+
+[10:25:26,274] [INFO] UserAttkCmdHandler.handle --> 当前线程 = nioEventLoopGroup-3-3
