@@ -10,24 +10,31 @@ import org.tinygame.herostory.msg.GameMsgProtocol;
 public class UserEntryCmdHandler implements ICmdHandler<GameMsgProtocol.UserEntryCmd> {
     @Override
     public void handle(ChannelHandlerContext ctx, GameMsgProtocol.UserEntryCmd msg) {
+        if (null == ctx
+                || null == msg) {
+            return;
+        }
+
         // 从指令对象中获取用户id跟英雄形象
         GameMsgProtocol.UserEntryCmd cmd = msg;
-        int userId = cmd.getUserId();
-        String heroAvatar = cmd.getHeroAvatar();
+        Integer userId = (Integer) ctx.channel().attr(AttributeKey.valueOf("userId")).get();
+        if (null == userId) {
+            return;
+        }
+
+        //获取已存在用户
+        User existUser = UserManger.getUserById(userId);
+        if (null == existUser) {
+            return;
+        }
+
+        //获取英雄形象
+        String heroAvatar = existUser.heroAvatar;
 
         GameMsgProtocol.UserEntryResult.Builder resultBuider = GameMsgProtocol.UserEntryResult.newBuilder();
         resultBuider.setUserId(userId);
         resultBuider.setHeroAvatar(heroAvatar);
 
-        //将用户加入字典
-        User newUser = new User();
-        newUser.userId = userId;
-        newUser.heroAvatar = heroAvatar;
-        newUser.currHP = 100;
-        UserManger.addUser(newUser);
-
-        //将用户 id 附着到channnel
-        ctx.channel().attr(AttributeKey.valueOf("userId")).set(userId);
         //构建结果并发送
         GameMsgProtocol.UserEntryResult newResult = resultBuider.build();
         Broadcaster.broadcast(newResult);

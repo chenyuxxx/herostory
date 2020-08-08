@@ -1,0 +1,15 @@
+2020-08-07T01:38:36.676475Z 1 [ERROR] [MY-012271] [InnoDB] The innodb_system data file 'ibdata1' must be writable
+2020-08-07T01:38:36.676521Z 1 [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+2020-08-07T01:38:36.676691Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2020-08-07T01:38:36.677724Z 0 [ERROR] [MY-010119] [Server] Aborting
+
+
+
+2020-08-07T02:30:03.453038Z 0 [Warning] [MY-000054] [Server] World-writable config file './auto.cnf' is ignored.
+2020-08-07T02:30:03.453138Z 0 [Warning] [MY-010107] [Server] World-writable config file './auto.cnf' has been removed.
+2020-08-07T02:30:03.453315Z 0 [Warning] [MY-010075] [Server] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: e638f137-d855-11ea-9a1b-fa270000c1f8.
+2020-08-07T02:30:03.466775Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2020-08-07T02:33:52.511819Z 8 [Warning] [MY-010055] [Server] IP address '85.93.20.147' could not be resolved: Name or service not known
+2020-08-07T05:10:47.257945Z 10 [Warning] [MY-010055] [Server] IP address '85.93.20.149' could not be resolved: Name or service not known
+2020-08-07T05:51:25.224710Z 13 [Warning] [MY-010058] [Server] Hostname 'worker-15.sfj.censys-scanner.com' does not resolve to '192.35.168.249'.
+2020-08-07T06:02:55.321232Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
