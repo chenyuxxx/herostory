@@ -1,8 +1,8 @@
 package org.tinygame.herostory.model;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 用户管理器
@@ -14,7 +14,7 @@ public final class UserManger {
     /**
      * 用户字典
      */
-    static private final Map<Integer, User> _userMap = new HashMap<Integer, User>();
+    static private final Map<Integer, User> _userMap = new ConcurrentHashMap<>();
 
     /**
      * 添加用户

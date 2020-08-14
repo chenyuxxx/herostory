@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tinygame.herostory.GameMsgDecoder;
 import org.tinygame.herostory.MySqlSessionFactory;
+import org.tinygame.herostory.async.IAsyncOperation;
 import org.tinygame.herostory.login.db.IUserDao;
 import org.tinygame.herostory.login.db.UserEntity;
+
+import java.util.function.Function;
 
 /**
  * 登录服务
@@ -43,40 +46,99 @@ public final class LoginService {
      *
      * @param userName 用户名
      * @param password 密码
+     * @param callback 回调函数
      * @return 用户实体
      */
-    public UserEntity userLogin(String userName,String password){
+    public void userLogin(String userName, String password, Function<UserEntity,Void> callback){
         if (null == userName || null == password) {
-            return null;
+            return;
         }
 
-        try (SqlSession mySqlSession = MySqlSessionFactory.openSession()){
-            //获取Dao
-            IUserDao dao = mySqlSession.getMapper(IUserDao.class);
+        IAsyncOperation asyncOp = new AsyncGetUserByName(userName,password) {
 
-            UserEntity user = dao.getUserById(userName);
-
-            if (null != user) {
-                if (!password.equals(user.getPassword())) {
-                    LOGGER.error("用户密码错误，错误用户 = {}",userName);
-
-                    throw new RuntimeException("用户密码错误");
+            @Override
+            public void doFinish() {
+                if (null != callback) {
+                    callback.apply(this.getUserEntity());
                 }
-            } else {
-                //新建用户实体
-                user = new UserEntity();
-                user.setUserName(userName);
-                user.setPassword(password);
-                user.setHeroAvatar("Hero_Shaman");
-
-                //将用户实体插入到数据库
-                dao.insertInto(user);
             }
+        };
 
-            return user;
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(),e);
-            return null;
+    }
+
+    /**
+     * 异步方式获取用户
+     */
+    private class AsyncGetUserByName implements IAsyncOperation {
+
+        /**
+         * 用户名称
+         */
+        private final String _userName;
+
+        /**
+         * 密码
+         */
+        private final String _password;
+
+        /**
+         * 用户实体
+         */
+        private UserEntity _userEntity = null;
+
+        /**
+         *
+         * @param _userName 用户名称
+         * @param _password 密码
+         */
+        public AsyncGetUserByName(String _userName, String _password) {
+            this._userName = _userName;
+            this._password = _password;
+        }
+
+        /**
+         * 获取用户实体
+         *
+         * @return 用户实体
+         */
+        public UserEntity getUserEntity (){
+            return _userEntity;
+        }
+
+        @Override
+        public int bindId() {
+            //根据用户名最后一个字母拿到了 bindId
+            return _userName.charAt(_userName.length() -1);
+        }
+
+        @Override
+        public void doAsync() {
+            try (SqlSession mySqlSession = MySqlSessionFactory.openSession()){
+                //获取Dao
+                IUserDao dao = mySqlSession.getMapper(IUserDao.class);
+
+                UserEntity userEntity = dao.getUserById(_userName);
+
+                if (null != userEntity) {
+                    if (!_password.equals(userEntity.getPassword())) {
+                        LOGGER.error("用户密码错误，错误用户 = {}",_userName);
+                    }
+                } else {
+                    //新建用户实体
+                    userEntity = new UserEntity();
+                    userEntity.setUserName(_userName);
+                    userEntity.setPassword(_password);
+                    userEntity.setHeroAvatar("Hero_Shaman");
+
+                    //将用户实体插入到数据库
+                    dao.insertInto(userEntity);
+                }
+
+                _userEntity = userEntity;
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(),e);
+            }
         }
     }
+
 }

@@ -4,6 +4,7 @@ import com.google.protobuf.GeneratedMessageV3;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.tinygame.herostory.async.IAsyncOperation;
 import org.tinygame.herostory.cmdhandle.CmdHandlerFactory;
 import org.tinygame.herostory.cmdhandle.ICmdHandler;
 
@@ -49,6 +50,19 @@ public final class MainThreadProcessor {
         newThread.setName("MainThreadProcessor");
         return newThread;
     });
+
+    /**
+     * 处理消息
+     *
+     * @param r Runnable 实例
+     */
+    public void process(Runnable r){
+        if (null == r) {
+            return;
+        }
+
+        _es.submit(r);
+    }
 
     /**
      * 处理消息
